@@ -106,5 +106,32 @@ Esta parte del proceso se puede consultar en el notebook [Model_test](Model_test
 
 Como primera estrategía a seguir se eligieron tres modelos clasificadores para probar el desempeño con los datasets generados, los modelos elegidos fueron Random Forest Classifer, K Nearest Neighbors, Suport Vector Classifier, Gradient Boosting Classifier. Con este primer análisis unicamente se buscaba evaluar el desempeño de cada modelo con la data. Se dividieron los datos de [train_completo](train_completo.csv) en una porcion de 80% para el entrenamiento y 20% para la validación. 
 
-El modelo que tuvo mejor desempeño fue Gradient Boosting Classifier con una perdida logaritmica de 0.58 seguido de Suport Vector Classifier con 0.77 de perdida. Viendo este desempeño realicé mi primer subida a Kaggle y obtuve un score de 0.58105
-[Kaggle_score](kaggle_score/first_submission.png)
+El modelo que tuvo mejor desempeño fue Gradient Boosting Classifier con una perdida logaritmica de 0.58 seguido de Suport Vector Classifier con 0.77 de perdida. Viendo este desempeño realicé mi primer subida a Kaggle y obtuve un score de 0.58.
+
+![](kaggle_score/first_submission.png)
+
+Obteniendo la matriz de confusion, me percaté que el modelo predecia muy bien las fallas del tipo 0, mientras que las fallas del tipo 2 (las mas interesantes para telstra) no lo hacía bien. Esto se debe al desbalance que hay en las clases, este problema es típico cuando los datos presentan clases desbalanceadas.
+
+# Gradient Boosting Classifier
+
+Esta parte del proceso se puede consultar en el notebook [Model_selection](Model_selection.ipynb).
+
+Para tratar de mejorar el desbalance que presentan las clases, se utilizó Oversampling para balancear la clase minoritaria, esta técnica consta de aumentar el numero de registros de las clases miniritarias a fin de equilibrarlas. El numero de registros pasó de 7381 a 14352 cada clase con el 33% de los registros. Se evaluó usar Undersampling, que es un método contrario, es decir que elimina aleatoriamente registros de la clase mayoritaria, al final solo se usó Oversamplig.
+
+El desempeño de Gradient Boosting Classifier con clases balanceadas fue peor que el anterior con clases balancedas, obtuvo una mayor pérdida logarítmica (0.66). 
+
+La estrategia a seguir fue mejorar el modelo variando el learning_rate y n_estimators, se analizó el rendimiento con learning_rate = [1, 0.75, 0.5, 0.25, 0.1, 0.05, 0.01] y n_estimators = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]. Los paramétros learning_rate = 0.25 y n_estimators=400 son los que tuvieron mejor desempeño, log_loss = 0.56 para ambos.
+
+Tratando de mejorar el desempeño del modelo, se obtuvieron las caracteríticas mas importantes y se volvió a entrenar unicámente con las 91 características que mas aportaban, con una selección de paramétros learning_rate=0.3 y n_estimators=400, el desempeño del modelo fue ligeramente peor teniendo una pérdida de 0.60. 
+
+Finalmente el mejor desempeño se obtuvo con un n_estiamator=400 sin cambiar el learning_rate, este modelo tuvo la menor perdida que todos, 0.55. 
+
+![](kaggle_score/third_submission.png)
+
+# Conclusiones 
+
+El variar paramétros y seleccionar las mejores características no se reflejó en un mejor desempeño del modelo, en algunos casos empeoró. Por esta razón considero que se deben generar nuevas características a partir de las existentes y tomar las más importante. 
+
+Usar un modelo similar puede mejorar el desempeño o el uso de redes neuronales. 
+
+
