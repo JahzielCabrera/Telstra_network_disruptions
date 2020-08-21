@@ -107,5 +107,4 @@ Esta parte del proceso se puede consultar en el notebook [Model_test](Model_test
 Como primera estrategía a seguir se eligieron tres modelos clasificadores para probar el desempeño con los datasets generados, los modelos elegidos fueron Random Forest Classifer, K Nearest Neighbors, Suport Vector Classifier, Gradient Boosting Classifier. Con este primer análisis unicamente se buscaba evaluar el desempeño de cada modelo con la data. Se dividieron los datos de [train_completo](train_completo.csv) en una porcion de 80% para el entrenamiento y 20% para la validación. 
 
 El modelo que tuvo mejor desempeño fue Gradient Boosting Classifier con una perdida logaritmica de 0.58 seguido de Suport Vector Classifier con 0.77 de perdida. Viendo este desempeño realicé mi primer subida a Kaggle y obtuve un score de 0.58105
-
-
+[Kaggle_score](kaggle_score/first_submission.png)
