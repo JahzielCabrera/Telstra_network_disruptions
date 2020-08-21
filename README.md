@@ -116,7 +116,7 @@ Obteniendo la matriz de confusion, me percaté que el modelo predecia muy bien l
 
 Esta parte del proceso se puede consultar en el notebook [Model_selection](Model_selection.ipynb).
 
-Para tratar de mejorar el desbalance que presentan las clases, se utilizó Oversampling para balancear la clase minoritaria, esta técnica consta de aumentar el numero de registros de las clases miniritarias a fin de equilibrarlas. El numero de registros pasó de 7381 a 14352 cada clase con el 33% de los registros. Se evaluó usar Undersampling, que es un método contrario, es decir que elimina aleatoriamente registros de la clase mayoritaria, al final solo se usó Oversamplig.
+Para tratar de mejorar el desbalance que presentan las clases, se aplicó Oversampling para balancear la clase minoritaria, esta técnica consta de aumentar el numero de registros de las clases miniritarias a fin de equilibrarlas. El numero de registros pasó de 7381 a 14352 cada clase con el 33% de los registros. Se evaluó usar Undersampling, que es un método contrario, es decir que elimina aleatoriamente registros de la clase mayoritaria, al final solo se usó Oversamplig.
 
 El desempeño de Gradient Boosting Classifier con clases balanceadas fue peor que el anterior con clases balancedas, obtuvo una mayor pérdida logarítmica (0.66). 
 
